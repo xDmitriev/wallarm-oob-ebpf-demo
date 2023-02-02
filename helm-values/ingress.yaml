@@ -1,0 +1,14 @@
+controller:
+  config:
+    ssl-redirect: "false"
+  ingressClass: nginx
+  ingressClassResource:
+    name: nginx
+    default: true
+    enabled: true
+    controllerValue: "k8s.io/ingress-nginx"
+  service:
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+
+nameOverride: nginx-ingress

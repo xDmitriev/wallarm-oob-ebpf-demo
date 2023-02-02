@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/force-ssl-redirect: "false"
+  name: myapp
+  namespace: myapp
+spec:
+  tls:
+    - hosts:
+        - ebpf-demo.com
+      secretName: myapp
+  ingressClassName: nginx
+  rules:
+    - host: ebpf-demo.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: myapp
+                port:
+                  number: 80
