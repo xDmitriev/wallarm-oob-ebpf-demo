@@ -20,10 +20,14 @@ get-config:
 attack-http:
 	curl -H "Host: ${AP_HOST}" ${LB_IP}/anything/etc/passwd
 
-
 attack-https:
-	curl -k -H "Host: ${AP_HOST}" https://${LB_IP}/etc/passwd
+	curl -k -H "Host: ${AP_HOST}" https://${LB_IP}/anything/etc/passwd/https
 
-# Step 6
+normal-load-http:
+	wrk -H "Host: ${AP_HOST}" -d 300 -c 1000 -t 15 http://${LB_IP}/anything/normal/http
+
+normal-load-https:
+	wrk -H "Host: ${AP_HOST}" -d 300 -c 1000 -t 15 https://${LB_IP}/anything/normal/https
+
 destroy:
 	terraform ${TF_DIR}  destroy ${TF_ARGS} --auto-approve
