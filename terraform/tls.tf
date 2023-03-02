@@ -72,9 +72,8 @@ resource "tls_locally_signed_cert" "server_crt" {
 }
 
 resource "kubernetes_secret" "app" {
-
   metadata {
-    name      = "myapp"
+    name      = "httpbin"
     namespace = var.app_namespace
   }
 

@@ -1,7 +1,6 @@
 resource "kubectl_manifest" "main" {
   depends_on = [
     azurerm_kubernetes_cluster.aks,
-    helm_release.oob_ebpf,
     helm_release.ingress_nginx,
     kubernetes_namespace.app,
     kubernetes_secret.app

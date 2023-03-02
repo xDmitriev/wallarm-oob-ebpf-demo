@@ -10,5 +10,16 @@ controller:
   service:
     type: LoadBalancer
     externalTrafficPolicy: Local
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512M
+    limits:
+      cpu: 1000m
+      memory: 1024M
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 6
 
 nameOverride: nginx-ingress

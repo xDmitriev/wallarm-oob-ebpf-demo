@@ -4,7 +4,7 @@ metadata:
   annotations:
     ingress.kubernetes.io/force-ssl-redirect: "false"
   name: myapp
-  namespace: myapp
+  namespace: httpbin
 spec:
   tls:
     - hosts:
@@ -12,7 +12,7 @@ spec:
       secretName: myapp
   ingressClassName: nginx
   rules:
-    - host: ebpf-demo.com
+    - host: ebpf-test.com
       http:
         paths:
           - path: /

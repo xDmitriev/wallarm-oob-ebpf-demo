@@ -3,7 +3,7 @@ variable "subscription_id" {
 }
 
 variable "name_prefix" {
-  default = "ebpf-demo"
+  default = "ebpf-test"
 }
 
 variable "location" {
@@ -11,7 +11,12 @@ variable "location" {
 }
 
 variable "node_count" {
-  default = 2
+  default = 3
+}
+# Standard_D4s_v3
+# Standard_D2_v2
+variable "vm_size" {
+  default = "Standard_D4s_v3"
 }
 
 variable "kubernetes_version" {
@@ -20,12 +25,14 @@ variable "kubernetes_version" {
 
 variable "wallarm_api_token" {}
 
-variable "wallarm_api_host" {}
+variable "wallarm_api_host" {
+  default = "api.wallarm.com"
+}
 
 variable "app_namespace" {
-  default = "myapp"
+  default = "httpbin"
 }
 
 variable "app_host" {
-  default = "ebpf-demo.com"
+  default = "ebpf-test.com"
 }
