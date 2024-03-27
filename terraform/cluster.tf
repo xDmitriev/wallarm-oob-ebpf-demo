@@ -1,7 +1,7 @@
 locals {
   name = "${var.name_prefix}-${random_string.suffix.result}"
   tags = {
-    Environment = "DEMO"
+    Environment = "Test"
   }
 }
 
@@ -16,11 +16,11 @@ resource "azurerm_resource_group" "main" {
   name     = local.name
 }
 
-resource "azurerm_network_watcher" "main" {
-  name                = local.name
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
-}
+#resource "azurerm_network_watcher" "main" {
+#  name                = local.name
+#  location            = azurerm_resource_group.main.location
+#  resource_group_name = azurerm_resource_group.main.name
+#}
 
 resource "azurerm_user_assigned_identity" "aks_identity" {
   name                = local.name
@@ -57,7 +57,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   default_node_pool {
     name       = "defaultpool"
     os_sku     = "Ubuntu"
-    vm_size    = "Standard_D2_v2"
+    vm_size    = var.vm_size
     node_count = var.node_count
     enable_auto_scaling = false
   }

@@ -1,4 +1,6 @@
 controller:
+  podAnnotations:
+    mirror.wallarm.com/enabled: "true"
   config:
     ssl-redirect: "false"
   ingressClass: nginx
@@ -10,5 +12,16 @@ controller:
   service:
     type: LoadBalancer
     externalTrafficPolicy: Local
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512M
+    limits:
+      cpu: 1000m
+      memory: 1024M
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
 
 nameOverride: nginx-ingress
